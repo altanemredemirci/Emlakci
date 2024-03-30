@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emlakci.WEBUI", "Emlakci.WEBUI\Emlakci.WEBUI.csproj", "{FD17152E-8D4C-4EEE-AF92-CCA9A6AFDA2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlakci.WEBUI", "Emlakci.WEBUI\Emlakci.WEBUI.csproj", "{FD17152E-8D4C-4EEE-AF92-CCA9A6AFDA2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emlakci.Entity", "Emlakci.Entity\Emlakci.Entity.csproj", "{ABCA92FA-C73C-4F50-9D26-F1A4531237FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlakci.Entity", "Emlakci.Entity\Emlakci.Entity.csproj", "{ABCA92FA-C73C-4F50-9D26-F1A4531237FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emlakci.DAL", "Emlakci.DAL\Emlakci.DAL.csproj", "{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{ABCA92FA-C73C-4F50-9D26-F1A4531237FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABCA92FA-C73C-4F50-9D26-F1A4531237FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABCA92FA-C73C-4F50-9D26-F1A4531237FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,4 +17,6 @@ namespace Emlakci.Entity
         [StringLength(2000)]
         public string Comment { get; set; }
     }
+
 }
+
