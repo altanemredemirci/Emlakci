@@ -9,5 +9,6 @@ namespace Emlakci.DAL.Abstract
 {
     public interface IProductDal:IRepository<Product>
     {
+       
     }
 }
