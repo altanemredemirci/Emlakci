@@ -19,6 +19,12 @@ namespace Emlakci.WEBUI
             builder.Services.AddScoped<ICategoryService, CategoryManager>();
             builder.Services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
 
+            builder.Services.AddScoped<IProductService, ProductManager>();
+            builder.Services.AddScoped<IProductDal, EfCoreProductDal>();
+
+
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
