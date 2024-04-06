@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlakci.WEBUI", "Emlakci.WE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlakci.Entity", "Emlakci.Entity\Emlakci.Entity.csproj", "{ABCA92FA-C73C-4F50-9D26-F1A4531237FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emlakci.DAL", "Emlakci.DAL\Emlakci.DAL.csproj", "{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlakci.DAL", "Emlakci.DAL\Emlakci.DAL.csproj", "{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlakci.BLL", "Emlakci.BLL\Emlakci.BLL.csproj", "{607F58BE-C639-46DB-B83D-632DC343ABC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68B3720E-F2C4-4B50-A8E7-46AAF1AA0B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{607F58BE-C639-46DB-B83D-632DC343ABC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{607F58BE-C639-46DB-B83D-632DC343ABC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{607F58BE-C639-46DB-B83D-632DC343ABC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{607F58BE-C639-46DB-B83D-632DC343ABC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

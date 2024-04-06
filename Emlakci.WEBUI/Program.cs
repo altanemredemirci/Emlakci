@@ -1,3 +1,8 @@
+using Emlakci.BLL.Abstract;
+using Emlakci.BLL.Concrete;
+using Emlakci.DAL.Abstract;
+using Emlakci.DAL.Concrete.EfCore;
+
 namespace Emlakci.WEBUI
 {
     public class Program
@@ -8,6 +13,11 @@ namespace Emlakci.WEBUI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // ************ DEPENDENCY INJECTION *************
+           
+            builder.Services.AddScoped<ICategoryService, CategoryManager>();
+            builder.Services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
 
             var app = builder.Build();
 
