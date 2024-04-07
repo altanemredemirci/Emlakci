@@ -27,7 +27,8 @@ namespace Emlakci.WEBUI.ViewComponents.Home
                     District = item.District,
                     Address = item.Address,
                     CategoryName = item.Category.Name,
-                    CoverImage = item.CoverImage
+                    CoverImage = item.CoverImage,
+                    Type=item.Type
                 });
             }
 

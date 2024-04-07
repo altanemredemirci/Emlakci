@@ -22,8 +22,11 @@ namespace Emlakci.WEBUI
             builder.Services.AddScoped<IProductService, ProductManager>();
             builder.Services.AddScoped<IProductDal, EfCoreProductDal>();
 
+            builder.Services.AddScoped<IEmploymentService, EmploymentManager>();
+            builder.Services.AddScoped<IEmploymentDal, EfCoreEmploymentDal>();
 
-
+            builder.Services.AddScoped<IWhoWeAreService, WhoWeAreManager>();
+            builder.Services.AddScoped<IWhoWeAreDal, EfCoreWhoWeAreDal>();
 
             var app = builder.Build();
 

@@ -8,11 +8,7 @@ using System.Threading.Tasks;
 
 namespace Emlakci.BLL.Abstract
 {
-    public interface ICategoryService
-    {
-        List<Category> GetAll(Expression<Func<Category, bool>> filter = null);
-        void Create(Category entity);
-        void Update(Category entity);
-        void Delete(Category entity);
+    public interface ICategoryService:IRepositoryService<Category>
+    {       
     }
 }

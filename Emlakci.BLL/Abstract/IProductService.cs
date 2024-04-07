@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace Emlakci.BLL.Abstract
 {
-    public interface IProductService
+    public interface IProductService : IRepositoryService<Product>
     {
-        List<Product> GetAll(Expression<Func<Product, bool>> filter = null);
-        void Create(Product entity);
-        void Update(Product entity);
-        void Delete(Product entity);
 
     }
 }

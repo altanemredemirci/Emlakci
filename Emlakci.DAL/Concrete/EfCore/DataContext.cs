@@ -19,5 +19,7 @@ namespace Emlakci.DAL.Concrete.EfCore
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductDetails> ProductDetails { get; set; }
+        public DbSet<WhoWeAre> WhoWeAres { get; set; }
+        public DbSet<Employment> Employments { get; set; }
     }
 }

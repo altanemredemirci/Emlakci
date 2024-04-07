@@ -34,6 +34,11 @@ namespace Emlakci.BLL.Concrete
             return _categoryDal.GetAll(filter);
         }
 
+        public Category GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Category entity)
         {
             _categoryDal.Update(entity);

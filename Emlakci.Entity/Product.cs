@@ -23,6 +23,8 @@ namespace Emlakci.Entity
         public string Address { get; set; }
         [StringLength(500)]
         public string Description { get; set; }
+        [StringLength(10)]
+        public string Type { get; set; }
 
         public int CategoryId { get; set; } //Foreign Key
         public Category Category { get; set; } 

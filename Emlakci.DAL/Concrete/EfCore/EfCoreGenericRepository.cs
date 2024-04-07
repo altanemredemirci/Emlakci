@@ -38,8 +38,8 @@ namespace Emlakci.DAL.Concrete.EfCore
             using (var context = new TContext())
             {
                 return filter == null
-                    ? context.Set<T>().ToList()
-                    : context.Set<T>().Where(filter).ToList(); 
+                    ? context.Set<T>().AsNoTracking().ToList()  //AsNoTracking(): Yapılan işlemin takibini bırak.
+                    : context.Set<T>().Where(filter).AsNoTracking().ToList(); 
                 //context.Products.Where(i => i.CategoryId == 1).ToList();
             }
 

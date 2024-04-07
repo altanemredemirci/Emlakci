@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Emlakci.Entity\Emlakci.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\Oracle\" />
+  </ItemGroup>
+
 </Project>
