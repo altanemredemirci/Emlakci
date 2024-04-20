@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Emlakci.DAL.Concrete.EfCore
 {
-    public class EfCoreProductDetailsDal : EfCoreGenericRepository<ProductDetails, DataContext>,IProductDetailsDal
+    public class EfCoreAgencyDal : EfCoreGenericRepository<Agency, DataContext>, IAgencyDal
     {
     }
 }

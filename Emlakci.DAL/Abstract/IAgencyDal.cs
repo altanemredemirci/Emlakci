@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Emlakci.DAL.Abstract
 {
-    public interface IProductDetails:IRepository<ProductDetails>
+    public interface IAgencyDal:IRepository<Agency>
     {
     }
 }
