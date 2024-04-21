@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace Emlakci.Entity
 {
-    public class Category
-    {      
+    public class Contact
+    {
         public int Id { get; set; }
-        [StringLength(50)]
-        public string Name { get; set; }
-        public bool Status { get; set; }
         [StringLength(100)]
-        public string Icon { get; set; }
-
-        public List<Product> Products { get; set; }
+        public string Name { get; set; }
+        [StringLength(100)]
+        public string Email { get; set; }
+        [StringLength(100)]
+        public string Subject { get; set; }
+        [StringLength(500)]
+        public string Message { get; set; }
     }
 }

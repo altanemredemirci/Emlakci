@@ -15,6 +15,7 @@ namespace Emlakci.Entity
         public byte BedRoomCount { get; set; }
         public byte RoomCount { get; set; }
         public byte GarageSize { get; set; }
+        [StringLength(4)]
         public string BuildYear { get; set; }
         public decimal Price { get; set; }
         [StringLength(500)]

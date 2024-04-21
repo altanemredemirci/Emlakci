@@ -19,5 +19,10 @@ namespace Emlakci.WEBUI.Controllers
         {
             return View(_categoryService.GetAll());
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }

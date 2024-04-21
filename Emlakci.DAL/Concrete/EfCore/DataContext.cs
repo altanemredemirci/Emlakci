@@ -22,5 +22,6 @@ namespace Emlakci.DAL.Concrete.EfCore
         public DbSet<WhoWeAre> WhoWeAres { get; set; }
         public DbSet<Employment> Employments { get; set; }
         public DbSet<Agency> Agencies { get; set; }
+        public DbSet<Contact> Contact { get; set; }
     }
 }
