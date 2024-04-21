@@ -14,6 +14,7 @@ namespace Emlakci.Entity
         public string Title { get; set; }
         [StringLength(100)]
         public string Name { get; set; }
+        public string ImageUrl { get; set; }
         [StringLength(2000)]
         public string Comment { get; set; }
     }
