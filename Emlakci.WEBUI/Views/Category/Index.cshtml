@@ -1,0 +1,55 @@
+﻿@model List<CategoryModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Kategori Listesi</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <a href="/Category/Create" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-plus"></i> Yeni Kategori
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ikon</th>
+                            <th>Kategori Adı</th>
+                            <th>Durumu</th>
+                            <th>Güncelle</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cat in Model)
+                        {
+                            <tr>
+                                <td>@cat.Id</td>
+                                <td><img class="img-fluid" src="~/RealEstate/img/@cat.Icon" alt="Icon"></td>
+                                <td>@cat.Name</td>
+                                <td>@cat.Status</td>
+                                <td><a href="#" class="btn btn-outline-warning">Güncelle</a></td>
+                                <td><a href="#" class="btn btn-outline-danger">Sil</a></td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
