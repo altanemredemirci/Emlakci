@@ -38,8 +38,8 @@
                                 <td><img class="img-fluid" src="~/RealEstate/img/@cat.Icon" alt="Icon"></td>
                                 <td>@cat.Name</td>
                                 <td>@cat.Status</td>
-                                <td><a href="#" class="btn btn-outline-warning">Güncelle</a></td>
-                                <td><a href="#" class="btn btn-outline-danger">Sil</a></td>
+                                <td><a href="/Category/Edit?id=@cat.Id" class="btn btn-outline-warning">Güncelle</a></td>
+                                <td><a asp-controller="Category" asp-action="Delete" asp-route-id="@cat.Id" class="btn btn-outline-danger">Sil</a></td>
                             </tr>
                         }
 

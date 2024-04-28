@@ -36,7 +36,12 @@ namespace Emlakci.BLL.Concrete
 
         public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            return _categoryDal.GetById(id);
+        }
+
+        public Category GetOne(Expression<Func<Category, bool>> filter = null)
+        {
+            return _categoryDal.GetOne(filter);
         }
 
         public void Update(Category entity)

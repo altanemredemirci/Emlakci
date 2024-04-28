@@ -26,6 +26,9 @@ namespace Emlakci.Entity
         [StringLength(10)]
         public string Type { get; set; }
 
+        public int AgencyId { get; set; }
+        public Agency Agency { get; set; }
+
         public int CategoryId { get; set; } //Foreign Key
         public Category Category { get; set; } 
     }

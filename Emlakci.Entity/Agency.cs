@@ -22,5 +22,7 @@ namespace Emlakci.Entity
         public string SocialTwo { get; set; }
         [StringLength(150)]
         public string SocialThree { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }

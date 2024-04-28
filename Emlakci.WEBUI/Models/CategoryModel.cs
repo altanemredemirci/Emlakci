@@ -22,6 +22,5 @@ namespace Emlakci.WEBUI.Models
         [DisplayName("İkon")]
         public string Icon { get; set; }
 
-        public List<Product> Products { get; set; }
     }
 }
