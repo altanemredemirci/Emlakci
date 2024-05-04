@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Emlakci.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Emlakci.BLL.DTOs.ProductDTO
         [StringLength(10)]
         public string Type { get; set; }
 
+        public Agency Agency { get; set; }
         public string CategoryName { get; set; }
     }
 }
