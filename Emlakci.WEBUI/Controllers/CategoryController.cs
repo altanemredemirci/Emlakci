@@ -1,4 +1,6 @@
-﻿using Emlakci.BLL.Abstract;
+﻿using AutoMapper;
+using Emlakci.BLL.Abstract;
+using Emlakci.BLL.DTOs.CategoryDTO;
 using Emlakci.Entity;
 using Emlakci.WEBUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,37 +10,41 @@ namespace Emlakci.WEBUI.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService, IMapper mapper)
         {
             _categoryService = categoryService;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            var models = new List<CategoryModel>();
+            //var models = new List<CategoryModel>();
 
-            foreach (var item in _categoryService.GetAll())
-            {
-                models.Add(new CategoryModel()
-                {
-                    Id = item.Id,
-                    Icon = item.Icon,
-                    Name = item.Name,
-                    Status = item.Status
-                });
-            }
+            //foreach (var item in _categoryService.GetAll())
+            //{
+            //    models.Add(new CategoryModel()
+            //    {
+            //        Id = item.Id,
+            //        Icon = item.Icon,
+            //        Name = item.Name,
+            //        Status = item.Status
+            //    });
+            //}
+
+            List<ResultCategoryDTO> models = _mapper.Map<List<ResultCategoryDTO>>(_categoryService.GetAll());
             return View(models);
         }
 
         public ActionResult Create()
         {
-            return View(new CategoryModel());
+            return View(new CreateCategoryDTO());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync(CategoryModel model, IFormFile file)
+        public ActionResult CreateAsync(CreateCategoryDTO model, IFormFile file)
         {
             ModelState.Remove("Icon");
             if (ModelState.IsValid)
@@ -59,12 +65,7 @@ namespace Emlakci.WEBUI.Controllers
 
                 UploadImage(file);
 
-                _categoryService.Create(new Category()
-                {
-                    Name = model.Name,
-                    Icon = file.FileName,
-                    Status = model.Status
-                });
+                _categoryService.Create(_mapper.Map<Category>(model));
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -75,20 +76,14 @@ namespace Emlakci.WEBUI.Controllers
             var cat = _categoryService.GetById(id);
             if (cat != null)
             {                
-                return View(new CategoryModel()
-                {
-                    Id = cat.Id,
-                    Icon = cat.Icon,
-                    Name = cat.Name,
-                    Status = cat.Status
-                });
+                return View(_mapper.Map<UpdateCategoryDTO>(cat));
             }
             return NotFound();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(CategoryModel model, IFormFile file)
+        public IActionResult Edit(UpdateCategoryDTO model, IFormFile file)
         {
             ModelState.Remove("Icon");
             if (ModelState.IsValid)

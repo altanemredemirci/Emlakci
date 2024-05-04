@@ -2,6 +2,7 @@ using Emlakci.BLL.Abstract;
 using Emlakci.BLL.Concrete;
 using Emlakci.DAL.Abstract;
 using Emlakci.DAL.Concrete.EfCore;
+using Emlakci.WEBUI.Mapping;
 
 namespace Emlakci.WEBUI
 {
@@ -14,6 +15,7 @@ namespace Emlakci.WEBUI
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
             // ************ DEPENDENCY INJECTION *************
            
             builder.Services.AddScoped<ICategoryService, CategoryManager>();
