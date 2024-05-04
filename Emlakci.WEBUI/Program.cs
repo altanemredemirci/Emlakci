@@ -39,6 +39,9 @@ namespace Emlakci.WEBUI
             builder.Services.AddScoped<IContactService, ContactManager>();
             builder.Services.AddScoped<IContactDal, EfCoreContactDal>();
 
+            builder.Services.AddScoped<ICityService, CityManager>();
+            builder.Services.AddScoped<ICityDal, EfCoreCityDal>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

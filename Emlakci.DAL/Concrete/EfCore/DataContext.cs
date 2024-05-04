@@ -23,5 +23,7 @@ namespace Emlakci.DAL.Concrete.EfCore
         public DbSet<Employment> Employments { get; set; }
         public DbSet<Agency> Agencies { get; set; }
         public DbSet<Contact> Contact { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<District> Districts { get; set; }
     }
 }

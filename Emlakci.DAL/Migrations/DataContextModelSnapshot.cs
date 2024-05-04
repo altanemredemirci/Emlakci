@@ -100,6 +100,23 @@ namespace Emlakci.DAL.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Emlakci.Entity.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
+                });
+
             modelBuilder.Entity("Emlakci.Entity.Client", b =>
                 {
                     b.Property<int>("Id")
@@ -163,6 +180,28 @@ namespace Emlakci.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Contact");
+                });
+
+            modelBuilder.Entity("Emlakci.Entity.District", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Districts");
                 });
 
             modelBuilder.Entity("Emlakci.Entity.Employee", b =>
@@ -362,6 +401,17 @@ namespace Emlakci.DAL.Migrations
                     b.ToTable("WhoWeAres");
                 });
 
+            modelBuilder.Entity("Emlakci.Entity.District", b =>
+                {
+                    b.HasOne("Emlakci.Entity.City", "City")
+                        .WithMany("Districts")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("Emlakci.Entity.Product", b =>
                 {
                     b.HasOne("Emlakci.Entity.Agency", "Agency")
@@ -400,6 +450,11 @@ namespace Emlakci.DAL.Migrations
             modelBuilder.Entity("Emlakci.Entity.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Emlakci.Entity.City", b =>
+                {
+                    b.Navigation("Districts");
                 });
 #pragma warning restore 612, 618
         }
