@@ -15,8 +15,7 @@ namespace Emlakci.Entity
         public decimal Price { get; set; }
         [StringLength(250)]
         public string CoverImage { get; set; }
-        [StringLength(100)]
-        public string City { get; set; }
+       
         [StringLength(100)]
         public string District { get; set; }
         [StringLength(500)]
@@ -30,6 +29,9 @@ namespace Emlakci.Entity
         public Agency Agency { get; set; }
 
         public int CategoryId { get; set; } //Foreign Key
-        public Category Category { get; set; } 
+        public Category Category { get; set; }
+
+        public int CityId { get; set; } 
+        public City City { get; set; }
     }
 }

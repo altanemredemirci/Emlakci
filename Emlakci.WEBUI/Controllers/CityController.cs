@@ -16,7 +16,6 @@ namespace Emlakci.WEBUI.Controllers
         {
             var districts = _cityService.GetAll(i => i.Id == cityId).FirstOrDefault().Districts.Select(d => new { Id = d.Id, Name = d.Name });
             return Json(districts);
-
         }
     }
 }

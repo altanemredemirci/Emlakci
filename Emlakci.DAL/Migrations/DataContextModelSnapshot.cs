@@ -285,10 +285,8 @@ namespace Emlakci.DAL.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CoverImage")
                         .IsRequired()
@@ -323,6 +321,8 @@ namespace Emlakci.DAL.Migrations
                     b.HasIndex("AgencyId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Products");
                 });
@@ -426,9 +426,17 @@ namespace Emlakci.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Emlakci.Entity.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Agency");
 
                     b.Navigation("Category");
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("Emlakci.Entity.ProductDetails", b =>

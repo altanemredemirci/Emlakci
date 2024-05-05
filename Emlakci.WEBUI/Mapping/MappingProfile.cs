@@ -13,6 +13,7 @@ namespace Emlakci.WEBUI.Mapping
             CreateMap<Category, CreateCategoryDTO>().ReverseMap();
             CreateMap<Category, UpdateCategoryDTO>().ReverseMap();
             CreateMap<Product, ResultProductDTO>().ReverseMap();
+            CreateMap<Product, CreateProductDTO>().ReverseMap();
         }
     }
 }

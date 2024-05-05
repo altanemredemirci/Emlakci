@@ -16,8 +16,7 @@ namespace Emlakci.BLL.DTOs.ProductDTO
         public decimal Price { get; set; }
         [StringLength(250)]
         public string CoverImage { get; set; }
-        [StringLength(100)]
-        public string City { get; set; }
+       
         [StringLength(100)]
         public string District { get; set; }
         [StringLength(500)]
@@ -29,5 +28,7 @@ namespace Emlakci.BLL.DTOs.ProductDTO
 
         public Agency Agency { get; set; }
         public string CategoryName { get; set; }
+
+        public City City { get; set; }
     }
 }

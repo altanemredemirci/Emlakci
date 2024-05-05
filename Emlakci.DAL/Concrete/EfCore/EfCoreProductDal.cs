@@ -16,7 +16,7 @@ namespace Emlakci.DAL.Concrete.EfCore
         {
             using(var context = new DataContext())
             {
-                var products = context.Products.Include(i => i.Category).Include(i=> i.Agency).AsQueryable();
+                var products = context.Products.Include(i => i.Category).Include(i=> i.Agency).Include(i=> i.City).AsQueryable();
 
                 return filter == null
                     ? products.ToList()
