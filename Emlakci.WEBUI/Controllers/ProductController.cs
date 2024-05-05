@@ -2,6 +2,7 @@
 using Emlakci.BLL.Abstract;
 using Emlakci.BLL.DTOs.ProductDTO;
 using Emlakci.Entity;
+using Emlakci.WEBUI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Emlakci.WEBUI.Controllers
@@ -77,6 +78,37 @@ namespace Emlakci.WEBUI.Controllers
             ViewBag.Cities = _cityService.GetAll();
             ViewBag.Categories = _categoryService.GetAll();
             ViewBag.Agencies = _agencyService.GetAll();
+            return View(model);
+        }
+
+
+        public IActionResult Edit(int id)
+        {
+            if (id == 0)
+            {
+                ErrorViewModel error = new ErrorViewModel()
+                {
+                    Title="NOT FOUND",
+                    Message="Do not found searched",
+                    ReturnUrl="/product/Index"
+                };
+
+                return View("Error", error);
+            }
+
+            var product = _productService.GetById(id);
+
+            if (product == null)
+            {
+
+            }
+
+            var model = _mapper.Map<UpdateProductDTO>(product);
+
+            ViewBag.Cities = _cityService.GetAll();
+            ViewBag.Categories = _categoryService.GetAll();
+            ViewBag.Agencies = _agencyService.GetAll();
+
             return View(model);
         }
     }

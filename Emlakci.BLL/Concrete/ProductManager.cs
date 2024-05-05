@@ -36,7 +36,7 @@ namespace Emlakci.BLL.Concrete
 
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            return _productDal.GetById(id);
         }
 
         public void Update(Product entity)

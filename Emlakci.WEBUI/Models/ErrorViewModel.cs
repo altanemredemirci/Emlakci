@@ -2,8 +2,10 @@ namespace Emlakci.WEBUI.Models
 {
     public class ErrorViewModel
     {
-        public string? RequestId { get; set; }
+        public string Title { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public string Message { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }
