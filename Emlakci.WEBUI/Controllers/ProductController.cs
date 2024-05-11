@@ -2,6 +2,7 @@
 using Emlakci.BLL.Abstract;
 using Emlakci.BLL.DTOs.ProductDTO;
 using Emlakci.Entity;
+using Emlakci.WEBUI.Mapping;
 using Emlakci.WEBUI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,7 +62,7 @@ namespace Emlakci.WEBUI.Controllers
                     return View(model);
                 }
 
-                model.CoverImage = await UploadImage(file);
+                model.CoverImage = await ImageMethod.UploadImage(file);
                 _productService.Create(_mapper.Map<Product>(model));
 
                 return RedirectToAction("Index");
@@ -120,9 +121,9 @@ namespace Emlakci.WEBUI.Controllers
 
                 if (file != null)
                 {
-                    DeleteImage(product.CoverImage);
+                    ImageMethod.DeleteImage(product.CoverImage);
                                         
-                    model.CoverImage=await UploadImage(file);
+                    model.CoverImage= await ImageMethod.UploadImage(file);
                 }
 
                _productService.Update(_mapper.Map<Product>(model));
@@ -165,41 +166,13 @@ namespace Emlakci.WEBUI.Controllers
             }
 
             _productService.Delete(product);
-            DeleteImage(product.CoverImage);
+            ImageMethod.DeleteImage(product.CoverImage);
 
             return RedirectToAction("Index");
         }
 
 
-        private void DeleteImage(string fileName)
-        {
-            var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\RealEstate\\img", fileName);
-
-            if (System.IO.File.Exists(oldImagePath))
-            {
-                System.IO.File.Delete(oldImagePath);
-            }
-        }
-
-        private async Task<string> UploadImage(IFormFile file)
-        {
-            string newFileName = GenerateUniqueFileName(file.FileName, ".jpg");
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\RealEstate\\img",newFileName);
-
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return newFileName;
-        }
-
-        private string GenerateUniqueFileName(string fileName,string fileExtension=".jpg")
-        {
-            var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            var uniqueName = $"{timestamp}{fileExtension}";
-            return uniqueName;
-        }
+       
 
 
 

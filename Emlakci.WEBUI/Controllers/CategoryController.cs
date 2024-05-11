@@ -2,6 +2,7 @@
 using Emlakci.BLL.Abstract;
 using Emlakci.BLL.DTOs.CategoryDTO;
 using Emlakci.Entity;
+using Emlakci.WEBUI.Mapping;
 using Emlakci.WEBUI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,7 +45,7 @@ namespace Emlakci.WEBUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAsync(CreateCategoryDTO model, IFormFile file)
+        public async Task<ActionResult> CreateAsync(CreateCategoryDTO model, IFormFile file)
         {
             ModelState.Remove("Icon");
             if (ModelState.IsValid)
@@ -63,7 +64,7 @@ namespace Emlakci.WEBUI.Controllers
                     return View(model);
                 }
 
-                UploadImage(file);
+                model.Icon=await ImageMethod.UploadImage(file);
 
                 _categoryService.Create(_mapper.Map<Category>(model));
                 return RedirectToAction("Index");
@@ -83,7 +84,7 @@ namespace Emlakci.WEBUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(UpdateCategoryDTO model, IFormFile file)
+        public async Task<IActionResult> Edit(UpdateCategoryDTO model, IFormFile file)
         {
             ModelState.Remove("Icon");
             if (ModelState.IsValid)
@@ -97,9 +98,8 @@ namespace Emlakci.WEBUI.Controllers
 
                 if (file != null)
                 {
-                    DeleteImage(cat.Icon);
-                    cat.Icon = file.FileName;
-                    UploadImage(file);
+                    ImageMethod.DeleteImage(cat.Icon);
+                    cat.Icon = await ImageMethod.UploadImage(file);
                 }
 
                 cat.Status = model.Status;
@@ -119,32 +119,11 @@ namespace Emlakci.WEBUI.Controllers
             {
                 _categoryService.Delete(cat);
 
-                DeleteImage(cat.Icon);
+                ImageMethod.DeleteImage(cat.Icon);
                
                 return RedirectToAction("Index");
             }
             return View();
-        }
-
-
-        private void DeleteImage(string fileName)
-        {
-            var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\RealEstate\\img", fileName);
-
-            if (System.IO.File.Exists(oldImagePath))
-            {
-                System.IO.File.Delete(oldImagePath);
-            }
-        }
-
-        private async void UploadImage(IFormFile file)
-        {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\RealEstate\\img", file.FileName);
-
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
         }
     }
 }
