@@ -61,14 +61,7 @@ namespace Emlakci.WEBUI.Controllers
                     return View(model);
                 }
 
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\RealEstate\\img", file.FileName);
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                    model.CoverImage = file.FileName;
-                }
-
+                model.CoverImage = await UploadImage(file);
                 _productService.Create(_mapper.Map<Product>(model));
 
                 return RedirectToAction("Index");
@@ -111,5 +104,104 @@ namespace Emlakci.WEBUI.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(UpdateProductDTO model, IFormFile file)
+        {
+            ModelState.Remove("CoverImage");
+            ModelState.Remove("City");
+            ModelState.Remove("file");
+            ModelState.Remove("Category");
+            ModelState.Remove("Agency");
+            if (ModelState.IsValid)
+            {
+                var product = _productService.GetById(model.Id);
+
+                if (file != null)
+                {
+                    DeleteImage(product.CoverImage);
+                                        
+                    model.CoverImage=await UploadImage(file);
+                }
+
+               _productService.Update(_mapper.Map<Product>(model));
+
+                return RedirectToAction("Index");
+            }
+
+
+            ViewBag.Cities = _cityService.GetAll();
+            ViewBag.Categories = _categoryService.GetAll();
+            ViewBag.Agencies = _agencyService.GetAll();
+            return View(model);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            if (id < 1)
+            {
+                ErrorViewModel errorViewModel = new ErrorViewModel()
+                {
+                    Title = "Bad Request",
+                    Message = "Id gönderilmedi",
+                    ReturnUrl = "/Product/Index"
+                };
+
+                return View("Error", errorViewModel);
+
+            }
+            var product = _productService.GetById(id);
+
+            if (product == null)
+            {
+                ErrorViewModel errorViewModel = new ErrorViewModel()
+                {
+                    Title = "Not Found",
+                    Message = "İlan bulunamadı",
+                    ReturnUrl = "/Product/Index"
+                };
+                return View("Error", errorViewModel);
+            }
+
+            _productService.Delete(product);
+            DeleteImage(product.CoverImage);
+
+            return RedirectToAction("Index");
+        }
+
+
+        private void DeleteImage(string fileName)
+        {
+            var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\RealEstate\\img", fileName);
+
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+        }
+
+        private async Task<string> UploadImage(IFormFile file)
+        {
+            string newFileName = GenerateUniqueFileName(file.FileName, ".jpg");
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\RealEstate\\img",newFileName);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return newFileName;
+        }
+
+        private string GenerateUniqueFileName(string fileName,string fileExtension=".jpg")
+        {
+            var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            var uniqueName = $"{timestamp}{fileExtension}";
+            return uniqueName;
+        }
+
+
+
     }
 }
