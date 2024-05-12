@@ -14,6 +14,15 @@ namespace Emlakci.DAL.Concrete.EfCore
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-RRLOK8F\\SQLDERS; Database=Emlakci; Integrated Security=true; TrustServerCertificate=True;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.ProductDetails)
+                .WithOne(pd => pd.Product)
+                .HasForeignKey<ProductDetails>(pd => pd.ProductId);
+        }
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -25,5 +34,6 @@ namespace Emlakci.DAL.Concrete.EfCore
         public DbSet<Contact> Contact { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<District> Districts { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }

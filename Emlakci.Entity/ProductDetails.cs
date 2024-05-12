@@ -26,5 +26,6 @@ namespace Emlakci.Entity
         public int ProductId { get; set; }
         public Product Product { get; set; }
 
+        public List<Image> Images { get; set; }
     }
 }
