@@ -30,5 +30,7 @@ namespace Emlakci.BLL.DTOs.ProductDTO
         public string CategoryName { get; set; }
 
         public City City { get; set; }
+
+        public ProductDetails ProductDetails { get; set; }
     }
 }

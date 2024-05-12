@@ -37,7 +37,7 @@ namespace Emlakci.WEBUI.ViewComponents.Home
             //    });
             //}
 
-            var products = _productService.GetAll();
+            var products = _productService.GetAll(i=> i.Status==true);
             List<ResultProductDTO> resultProductModels = _mapper.Map<List<ResultProductDTO>>(products);
 
             return View(resultProductModels);

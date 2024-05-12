@@ -31,6 +31,9 @@ namespace Emlakci.Entity
         [StringLength(10)]
         public string Type { get; set; }
 
+        public bool Status { get; set; }
+        public bool IsFavorite { get; set; }
+
         public int AgencyId { get; set; }
         public Agency Agency { get; set; }
 

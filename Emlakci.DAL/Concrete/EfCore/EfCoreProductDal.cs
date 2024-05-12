@@ -16,12 +16,27 @@ namespace Emlakci.DAL.Concrete.EfCore
         {
             using(var context = new DataContext())
             {
-                var products = context.Products.Include(i => i.Category).Include(i=> i.Agency).Include(i=> i.City).AsQueryable();
+                var products = context.Products
+                    .Include(i => i.Category)
+                    .Include(i=> i.ProductDetails)
+                    .Include(i=> i.City).AsQueryable();
 
                 return filter == null
                     ? products.ToList()
                     : products.Where(filter).ToList();
             }
         }
+        public override Product GetById(int id)
+        {
+            using (var context = new DataContext())
+            {
+                return context.Products
+                    .Include(i => i.Category)
+                    .Include(i => i.ProductDetails)
+                    .ThenInclude(i=> i.Images)
+                    .Include(i => i.City).FirstOrDefault(i=> i.Id==id);
+            }
+        }
+
     }
 }

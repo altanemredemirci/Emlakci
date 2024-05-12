@@ -171,10 +171,5 @@ namespace Emlakci.WEBUI.Controllers
             return RedirectToAction("Index");
         }
 
-
-       
-
-
-
     }
 }

@@ -10,16 +10,23 @@ namespace Emlakci.Entity
     public class ProductDetails
     {
         public int Id { get; set; }
+
         public int Size { get; set; }
+
         public byte BathCount { get; set; }
+
         public byte BedRoomCount { get; set; }
+
         public byte RoomCount { get; set; }
+
         public byte GarageSize { get; set; }
+
         [StringLength(4)]
         public string BuildYear { get; set; }
-        public decimal Price { get; set; }
+      
         [StringLength(500)]
         public string Location { get; set; }
+
         [StringLength(500)]
         public string VideoUrl { get; set; }
 

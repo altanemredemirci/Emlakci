@@ -18,7 +18,7 @@ namespace Emlakci.WEBUI.ViewComponents.Home
         }
         public IViewComponentResult Invoke()
         {
-            var products = _productService.GetAll();
+            var products = _productService.GetAll(i=> i.IsFavorite==true);
             List<ResultProductDTO> resultProductModels = _mapper.Map<List<ResultProductDTO>>(products);
 
             return View(resultProductModels);

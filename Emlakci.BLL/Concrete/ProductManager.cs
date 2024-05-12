@@ -38,7 +38,6 @@ namespace Emlakci.BLL.Concrete
         {
             return _productDal.GetById(id);
         }
-
         public void Update(Product entity)
         {
             _productDal.Update(entity);

@@ -54,7 +54,7 @@ namespace Emlakci.DAL.Concrete.EfCore
             //}
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
            using(var context = new TContext())
             {
