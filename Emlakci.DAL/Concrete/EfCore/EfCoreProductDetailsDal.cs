@@ -1,5 +1,6 @@
 ﻿using Emlakci.DAL.Abstract;
 using Emlakci.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,12 @@ namespace Emlakci.DAL.Concrete.EfCore
 {
     public class EfCoreProductDetailsDal : EfCoreGenericRepository<ProductDetails, DataContext>,IProductDetailsDal
     {
+        public override ProductDetails GetById(int id)
+        {
+            using (var context = new DataContext())
+            {
+                return context.ProductDetails.Find(id);
+            }
+        }
     }
 }

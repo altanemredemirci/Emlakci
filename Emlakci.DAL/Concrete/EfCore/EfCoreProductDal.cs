@@ -34,6 +34,7 @@ namespace Emlakci.DAL.Concrete.EfCore
                     .Include(i => i.Category)
                     .Include(i => i.ProductDetails)
                     .ThenInclude(i=> i.Images)
+                    .Include(i=> i.Agency)
                     .Include(i => i.City).FirstOrDefault(i=> i.Id==id);
             }
         }

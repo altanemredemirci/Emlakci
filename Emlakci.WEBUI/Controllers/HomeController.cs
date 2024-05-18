@@ -25,6 +25,11 @@ namespace Emlakci.WEBUI.Controllers
             return View(_categoryService.GetAll());
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult Contact()
         {
             return View();
@@ -32,10 +37,7 @@ namespace Emlakci.WEBUI.Controllers
 
         public IActionResult ProductDetail(int id)
         {
-            var product = _productService.GetById(id);
-            var model = _mapper.Map<ResultProductDTO>(product);
-
-            return View(model);
+            return View(id);
         }
     }
 }
