@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Emlakci.BLL.Abstract
 {
-    public interface IContactService
+    public interface ISliderService
     {
-        Contact GetContact();
+        Slider GetByPage(string page);
     }
 }

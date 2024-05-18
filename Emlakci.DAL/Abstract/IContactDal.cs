@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Emlakci.DAL.Abstract
 {
-    public interface IContactDal:IRepository<Contact>
+    public interface IContactDal
     {
+        Contact GetContact();
     }
 }

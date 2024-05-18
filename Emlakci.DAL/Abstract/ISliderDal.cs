@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Emlakci.BLL.Abstract
+namespace Emlakci.DAL.Abstract
 {
-    public interface IContactService
+    public interface ISliderDal        
     {
-        Contact GetContact();
+        Slider GetByPage(string page);
     }
 }

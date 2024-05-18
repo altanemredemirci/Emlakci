@@ -2,6 +2,7 @@
 using Emlakci.BLL.DTOs.AgencyDTO;
 using Emlakci.BLL.DTOs.CategoryDTO;
 using Emlakci.BLL.DTOs.ProductDTO;
+using Emlakci.BLL.DTOs.SliderDTO;
 using Emlakci.Entity;
 
 namespace Emlakci.WEBUI.Mapping
@@ -19,6 +20,7 @@ namespace Emlakci.WEBUI.Mapping
             CreateMap<Agency, ResultAgencyDTO>().ReverseMap();
             CreateMap<Agency, CreateAgencyDTO>().ReverseMap();
             CreateMap<Agency, UpdateAgencyDTO>().ReverseMap();
+            CreateMap<Slider, ResultSliderDTO>().ReverseMap();
         }
     }
 }

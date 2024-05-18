@@ -19,30 +19,9 @@ namespace Emlakci.BLL.Concrete
             _contactDal = contactDal;
         }
 
-        public void Create(Contact entity)
+        public Contact GetContact()
         {
-            _contactDal.Create(entity);
-        }
-
-        public void Delete(Contact entity)
-        {
-            _contactDal.Delete(entity);
-
-        }
-
-        public List<Contact> GetAll(Expression<Func<Contact, bool>> filter = null)
-        {
-            return _contactDal.GetAll(filter);
-        }
-
-        public Contact GetById(int id)
-        {
-            return _contactDal.GetById(id);
-        }
-
-        public void Update(Contact entity)
-        {
-            _contactDal.Update(entity);
+            return _contactDal.GetContact();
         }
     }
 }
