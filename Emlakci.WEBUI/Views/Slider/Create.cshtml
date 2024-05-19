@@ -1,0 +1,87 @@
+﻿@model CreateSliderDTO
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Yeni Slider</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form asp-controller="Slider" asp-action="Create" method="post" enctype="multipart/form-data">
+              
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="Title"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description"></label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Page"></label>
+                                <input asp-for="Page" class="form-control" />
+                                <span asp-validation-for="Page" class="text-danger"></span>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Kaydet</button>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <img id="previewImage1" src="" class="card-img-top" alt="..." style="width:70%">
+                            </div>
+                            <div class="form-group">
+                                <input type="file" id="imageInput1" name="file1" value="@Model.ImageUrl1" accept="image/*" onchange="updateCard(1)" />
+                                <span asp-validation-for="ImageUrl1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <img id="previewImage2" src="" class="card-img-top" alt="..." style="width:70%">
+                            </div>
+                            <div class="form-group">
+                                <input type="file" id="imageInput2" name="file2" value="@Model.ImageUrl2" accept="image/*" onchange="updateCard(2)" />
+                                <span asp-validation-for="ImageUrl2" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+               
+            </form>
+        </div>
+        <!-- /.card -->
+    </div>
+
+</div>
+
+<script>
+    function updateCard(i) {
+        var input = document.getElementById('imageInput'+i);
+        var preview = document.getElementById('previewImage'+i);
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+</script>
+

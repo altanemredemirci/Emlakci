@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Emlakci.BLL.Abstract
 {
-    public interface ISliderService
+    public interface ISliderService:IRepositoryService<Slider>
     {
-        Slider GetByPage(string page);
+        Slider GetOne(Expression<Func<Slider, bool>> filter=null);
     }
 }

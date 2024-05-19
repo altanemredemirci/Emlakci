@@ -1,7 +1,6 @@
 using Emlakci.BLL.Abstract;
 using Emlakci.BLL.Concrete;
 using Emlakci.DAL.Abstract;
-using Emlakci.DAL.Concrete;
 using Emlakci.DAL.Concrete.EfCore;
 using Emlakci.WEBUI.Mapping;
 

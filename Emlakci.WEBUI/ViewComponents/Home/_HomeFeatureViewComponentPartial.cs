@@ -18,7 +18,7 @@ namespace Emlakci.WEBUI.ViewComponents.Home
 
         public IViewComponentResult Invoke()
         {
-            return View(_mapper.Map<ResultSliderDTO>(_sliderService.GetByPage("Index")));
+            return View(_mapper.Map<ResultSliderDTO>(_sliderService.GetOne(i => i.Page == "Index")));
         }
     }
 }

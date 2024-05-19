@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Emlakci.DAL.Abstract
 {
-    public interface ISliderDal        
+    public interface ISliderDal:IRepository<Slider>    
     {
-        Slider GetByPage(string page);
     }
 }

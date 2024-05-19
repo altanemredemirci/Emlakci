@@ -1,0 +1,56 @@
+﻿@model List<ResultSliderDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Slider Listesi</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <a href="/Slider/Create" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-plus"></i> Yeni Slider
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Resim1</th>
+                            <th>Resim2</th>
+                            <th>Başlık</th>
+                            <th>Açıklama</th>                            
+                            <th>Sayfa</th>                            
+                            <th>Güncelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model){
+                            <tr>
+                                <td>@item.Id</td>
+                                <td><img class="img-fluid" src="~/RealEstate/img/@item.ImageUrl1" alt="Icon"></td>
+                                <td><img class="img-fluid" src="~/RealEstate/img/@item.ImageUrl2" alt="Icon"></td>
+                                <td>@item.Title</td>
+                                <td>@item.Description</td>
+                                <td>@item.Page</td>
+                                <td><a href="/Slider/Edit?id=@item.Id" class="btn btn-outline-warning">Güncelle</a></td>
+                            </tr>
+                        }
+                      
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+

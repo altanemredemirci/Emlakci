@@ -25,6 +25,7 @@ namespace Emlakci.WEBUI.Mapping
             CreateMap<Agency, UpdateAgencyDTO>().ReverseMap();
 
             CreateMap<Slider, ResultSliderDTO>().ReverseMap();
+            CreateMap<Slider, CreateSliderDTO>().ReverseMap();
 
             CreateMap<WhoWeAre, ResultWhoWeAreDTO>().ReverseMap();
             CreateMap<WhoWeAre, UpdateWhoWeAreDTO>().ReverseMap();
