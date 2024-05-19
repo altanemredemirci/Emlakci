@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace Emlakci.BLL.Abstract
 {
-    public interface IWhoWeAreService : IRepositoryService<WhoWeAre>
+    public interface IWhoWeAreService 
     {
+        WhoWeAre GetFirst();
+        WhoWeAre GetById(int id);
+        void Update(WhoWeAre entity);
     }
 }

@@ -19,24 +19,14 @@ namespace Emlakci.BLL.Concrete
             _whoWeAreDal = whoWeAreDal;
         }
 
-        public void Create(WhoWeAre entity)
-        {
-            _whoWeAreDal.Create(entity);
-        }
-
-        public void Delete(WhoWeAre entity)
-        {
-            _whoWeAreDal.Delete(entity);
-        }
-
-        public List<WhoWeAre> GetAll(Expression<Func<WhoWeAre, bool>> filter = null)
-        {
-            return _whoWeAreDal.GetAll(filter);
-        }
-
         public WhoWeAre GetById(int id)
         {
             return _whoWeAreDal.GetById(id);
+        }
+
+        public WhoWeAre GetFirst()
+        {
+            return _whoWeAreDal.GetFirst();
         }
 
         public void Update(WhoWeAre entity)

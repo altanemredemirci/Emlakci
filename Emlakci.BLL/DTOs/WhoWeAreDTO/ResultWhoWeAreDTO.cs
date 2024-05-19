@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Emlakci.Entity
+namespace Emlakci.BLL.DTOs.WhoWeAreDTO
 {
-    public class WhoWeAre
+    public class ResultWhoWeAreDTO
     {
         public int Id { get; set; }
         [StringLength(100)]

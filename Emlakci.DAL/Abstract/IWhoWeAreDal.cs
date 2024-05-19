@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Emlakci.DAL.Abstract
 {
-    public interface IWhoWeAreDal:IRepository<WhoWeAre>
+    public interface IWhoWeAreDal
     {
+        WhoWeAre GetFirst();
+        WhoWeAre GetById(int id);
+        void Update(WhoWeAre entity);
     }
 }

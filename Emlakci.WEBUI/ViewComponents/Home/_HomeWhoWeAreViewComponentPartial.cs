@@ -18,11 +18,11 @@ namespace Emlakci.WEBUI.ViewComponents.Home
 
         public IViewComponentResult Invoke()
         {
-            var whoWeAre = _whoWeAreService.GetAll().FirstOrDefault();
+            var whoWeAre = _whoWeAreService.GetFirst();
 
             ViewBag.Title = whoWeAre.Title;
             ViewBag.Description = whoWeAre.Description;
-
+            ViewBag.Image = whoWeAre.ImageUrl;
 
             return View(_employmentService.GetAll().Where(i => i.Status == true).Select(i => new ResultEmploymentModel()
             {
