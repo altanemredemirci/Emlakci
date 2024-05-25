@@ -30,6 +30,8 @@ namespace Emlakci.Entity
         [StringLength(500)]
         public string VideoUrl { get; set; }
 
+        public DateTime PublishDate { get; set; }
+
         public int ProductId { get; set; }
         public Product Product { get; set; }
 

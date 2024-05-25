@@ -27,6 +27,8 @@ namespace Emlakci.BLL.DTOs.ProductDTO
         [StringLength(500)]
         public string Description { get; set; }
 
+        public bool IsFavorite { get; set; }
+
         [StringLength(10)]
         public string Type { get; set; }
 

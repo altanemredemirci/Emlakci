@@ -26,6 +26,8 @@ namespace Emlakci.BLL.DTOs.ProductDTO
         [StringLength(10)]
         public string Type { get; set; }
 
+        public bool IsFavorite { get; set; }
+
         public Agency Agency { get; set; }
         public string CategoryName { get; set; }
 

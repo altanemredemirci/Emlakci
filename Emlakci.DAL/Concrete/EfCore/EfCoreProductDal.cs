@@ -19,11 +19,12 @@ namespace Emlakci.DAL.Concrete.EfCore
                 var products = context.Products
                     .Include(i => i.Category)
                     .Include(i=> i.ProductDetails)
+                    .Include(i=> i.Agency)
                     .Include(i=> i.City).AsQueryable();
 
                 return filter == null
-                    ? products.ToList()
-                    : products.Where(filter).ToList();
+                    ? products.OrderByDescending(i=> i.ProductDetails.PublishDate). ToList()
+                    : products.Where(filter).OrderByDescending(i => i.ProductDetails.PublishDate).ToList();
             }
         }
         public override Product GetById(int id)

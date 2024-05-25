@@ -34,6 +34,7 @@
                             <th>Durum</th>
                             <th>Kategori Adı</th>
                             <th>Acenta Adı</th>
+                            <th>Favori</th>
                             <th>Güncelle</th>
                             <th>Sil</th>
                         </tr>
@@ -53,6 +54,9 @@
                                 <td>@pr.Type</td>
                                 <td>@pr.CategoryName</td>
                                 <td>@pr.Agency.FullName</td>
+
+                                <td><a href="/Product/StatusChange?id=@pr.Id" class="btn btn-outline-@(pr.IsFavorite==true ? "warning" :"success")">@(pr.IsFavorite==true?"Pasif Et":"Aktif Et")</a></td>
+
                                 <td><a href="/Product/Edit?id=@pr.Id" class="btn btn-outline-warning">Güncelle</a></td>
                                 <td><a href="/Product/Delete?id=@pr.Id" class="btn btn-outline-danger">Sil</a></td>
                             </tr>

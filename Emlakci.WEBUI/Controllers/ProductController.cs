@@ -171,5 +171,23 @@ namespace Emlakci.WEBUI.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult StatusChange(int id)
+        {
+            var product = _productService.GetById(id);
+            if (product == null)
+            {
+                ErrorViewModel error = new ErrorViewModel()
+                {
+                    Title = "NOT FOUND",
+                    Message = "Do not found searched",
+                    ReturnUrl = "/product/Index"
+                };
+            }
+            product.IsFavorite= product.IsFavorite == true ? false : true;
+
+            _productService.Update(product);
+
+            return RedirectToAction("Index");
+        }
     }
 }
