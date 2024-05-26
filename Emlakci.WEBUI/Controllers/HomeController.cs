@@ -22,6 +22,7 @@ namespace Emlakci.WEBUI.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.ReadMore = "true";
             return View(_categoryService.GetAll());
         }
 
@@ -36,6 +37,21 @@ namespace Emlakci.WEBUI.Controllers
         }
 
         public IActionResult ProductDetail(int id)
+        {
+            return View(id);
+        }
+
+        public IActionResult ProductList()
+        {
+            return View();
+        }
+
+        public IActionResult AgencyList()
+        {
+            return View();
+        }
+
+        public IActionResult AgencyDetail(int id)
         {
             return View(id);
         }

@@ -1,24 +1,25 @@
 ﻿using AutoMapper;
 using Emlakci.BLL.Abstract;
 using Emlakci.BLL.DTOs.AgencyDTO;
-using Emlakci.WEBUI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Emlakci.WEBUI.ViewComponents.Home
 {
-    public class _HomeTeamAgentViewComponentPartial : ViewComponent
+    public class _HomeAgencyDetailViewComponentPartial:ViewComponent
     {
         private readonly IAgencyService _agencyService;
         private readonly IMapper _mapper;
 
-        public _HomeTeamAgentViewComponentPartial(IAgencyService agencyService,IMapper mapper)
+        public _HomeAgencyDetailViewComponentPartial(IAgencyService agencyService, IMapper mapper)
         {
             _agencyService = agencyService;
             _mapper = mapper;
         }
-        public IViewComponentResult Invoke()
+
+        public IViewComponentResult Invoke(int id)
         {
-            return View(_mapper.Map<List<ResultAgencyDTO>>(_agencyService.GetAll()));
+            var agency = _agencyService.GetById(id);
+            return View(_mapper.Map<ResultAgencyDTO>(agency));
         }
     }
 }
