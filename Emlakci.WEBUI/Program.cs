@@ -45,6 +45,9 @@ namespace Emlakci.WEBUI
             builder.Services.AddScoped<ISliderService, SliderManager>();
             builder.Services.AddScoped<ISliderDal, EfCoreSliderDal>();
 
+            builder.Services.AddScoped<IMailService, MailManager>();
+            builder.Services.AddScoped<IMailDal, EfCoreMailDal>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

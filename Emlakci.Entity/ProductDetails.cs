@@ -31,6 +31,7 @@ namespace Emlakci.Entity
         public string VideoUrl { get; set; }
 
         public DateTime PublishDate { get; set; }
+        public int  ViewCount { get; set; }
 
         public int ProductId { get; set; }
         public Product Product { get; set; }

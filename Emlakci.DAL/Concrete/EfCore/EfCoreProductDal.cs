@@ -31,12 +31,23 @@ namespace Emlakci.DAL.Concrete.EfCore
         {
             using (var context = new DataContext())
             {
+                UpViewCount(id);
                 return context.Products
                     .Include(i => i.Category)
                     .Include(i => i.ProductDetails)
                     .ThenInclude(i=> i.Images)
                     .Include(i=> i.Agency)
                     .Include(i => i.City).FirstOrDefault(i=> i.Id==id);
+            }
+        }
+
+        private void UpViewCount(int id )
+        {
+            using (var context = new DataContext())
+            {
+               var product = context.ProductDetails.Find(id);
+                product.ViewCount += 1;
+                context.SaveChangesAsync();
             }
         }
 
