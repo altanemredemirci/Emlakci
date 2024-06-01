@@ -1,0 +1,4 @@
+Mail Gönderme
+ProductDetail Create,Edit
+
+MailYanıtla

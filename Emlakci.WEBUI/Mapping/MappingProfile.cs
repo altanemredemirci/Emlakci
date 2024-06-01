@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Emlakci.BLL.DTOs.AgencyDTO;
 using Emlakci.BLL.DTOs.CategoryDTO;
+using Emlakci.BLL.DTOs.MailDTO;
 using Emlakci.BLL.DTOs.ProductDTO;
 using Emlakci.BLL.DTOs.SliderDTO;
 using Emlakci.BLL.DTOs.WhoWeAreDTO;
@@ -26,9 +27,12 @@ namespace Emlakci.WEBUI.Mapping
 
             CreateMap<Slider, ResultSliderDTO>().ReverseMap();
             CreateMap<Slider, CreateSliderDTO>().ReverseMap();
+            CreateMap<Slider, UpdateSliderDTO>().ReverseMap();
 
             CreateMap<WhoWeAre, ResultWhoWeAreDTO>().ReverseMap();
             CreateMap<WhoWeAre, UpdateWhoWeAreDTO>().ReverseMap();
+
+            CreateMap<Mail, ResultMailDTO>().ReverseMap();
         }
     }
 }
