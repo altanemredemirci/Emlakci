@@ -22,5 +22,17 @@ namespace Emlakci.WEBUI.Controllers
 
             return View(_mapper.Map<List<ResultMailDTO>>(mails));
         }
+
+        public IActionResult StatusChange(int id)
+        {
+            var mail = _mailService.GetById(id);
+
+            //mail.IsRead = mail.IsRead == false ? true : false;
+
+            mail.IsRead = !mail.IsRead;
+
+            _mailService.Update(mail);
+            return RedirectToAction("Index");
+        }
     }
 }
