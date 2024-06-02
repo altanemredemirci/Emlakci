@@ -19,5 +19,6 @@ namespace Emlakci.BLL.DTOs.MailDTO
         [StringLength(500)]
         public string Message { get; set; }
         public bool IsRead { get; set; }
+        public bool IsReply { get; set; }
     }
 }

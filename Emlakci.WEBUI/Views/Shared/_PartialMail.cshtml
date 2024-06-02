@@ -15,18 +15,29 @@
             }
             else
             {
-                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal" onclick="MailLoad('@item.Name','@item.Email','@item.Subject','@item.Message',@item.Id)">
+                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#ReadModal" onclick="MailLoad('@item.Name','@item.Email','@item.Subject','@item.Message',@item.Id)">
                     Okunmadı
                 </button>
             }
         </td>
         <td>
-          @*   <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-@(item.Reply==true?"primary":"danger")" data-toggle="modal" data-target="#exampleModal" onclick="mailLoad('@item.Name','@item.Email','@item.Subject',@item.Id)">
-                @(item.ISReply==true?"Yanıtlandı":"Yanıtla")
-            </button>
+         <!-- Button trigger modal -->
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            @if (item.IsReply == false)
+            {
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#ReplyModal" onclick="MailReply('@item.Name','@item.Email','@item.Subject',@item.Id)">
+                    Yanıtla
+                </button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-outline-primary">
+                   Yanıtlandı
+                </button>
+            }
+          
+
+            <div class="modal fade" id="ReplyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -36,7 +47,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/advert/sendMail" method="post">
+                            <form action="/Mail/ReplyMail" method="post">
                                 <input type="hidden" name="Id" id="MailId" value="" />
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -70,9 +81,7 @@
 
                     </div>
                 </div>
-            </div>
- *@
-          
+            </div>       
 
         </td>
     </tr>
@@ -81,7 +90,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ReadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -143,6 +152,14 @@
         document.getElementById("subject").value = subject;
         document.getElementById("message").value = message;
         document.getElementById("id").value = id;
+    }
+
+    function MailReply(name, email, subject, id) {
+        console.log(name,email,subject,id)
+        document.getElementById("senderName").value = name;
+        document.getElementById("senderEmail").value = email;
+        document.getElementById("senderSubject").value = subject;
+        document.getElementById("MailId").value = id;
     }
 </script>
 
