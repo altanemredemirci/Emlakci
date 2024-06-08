@@ -6,6 +6,7 @@ namespace Emlakci.WEBUI.Controllers
     {
         public IActionResult Index()
         {
+
             return View();
         }
     }
