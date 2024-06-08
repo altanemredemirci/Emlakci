@@ -37,5 +37,6 @@ namespace Emlakci.DAL.Concrete.EfCore
         public DbSet<Image> Images { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<TodoList> TodoLists { get; set; }
     }
 }

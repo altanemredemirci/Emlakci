@@ -48,7 +48,8 @@ namespace Emlakci.DAL.Concrete.EfCore
                 return context.Products
                     .Include(i => i.Category)
                     .Include(i => i.Agency)
-                    .Include(i => i.City).OrderByDescending(i=> i.Id).Take(4).ToList();
+                    .Include(i => i.City)
+                    .Include(i=> i.ProductDetails).OrderByDescending(i=> i.Id).Take(4).ToList();
             }
         }
 

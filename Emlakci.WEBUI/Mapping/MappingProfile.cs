@@ -4,6 +4,7 @@ using Emlakci.BLL.DTOs.CategoryDTO;
 using Emlakci.BLL.DTOs.MailDTO;
 using Emlakci.BLL.DTOs.ProductDTO;
 using Emlakci.BLL.DTOs.SliderDTO;
+using Emlakci.BLL.DTOs.TodoListDTO;
 using Emlakci.BLL.DTOs.WhoWeAreDTO;
 using Emlakci.Entity;
 
@@ -33,6 +34,7 @@ namespace Emlakci.WEBUI.Mapping
             CreateMap<WhoWeAre, UpdateWhoWeAreDTO>().ReverseMap();
 
             CreateMap<Mail, ResultMailDTO>().ReverseMap();
+            CreateMap<TodoList, ResultTodoListDTO>().ReverseMap();
         }
     }
 }

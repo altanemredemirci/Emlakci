@@ -51,6 +51,9 @@ namespace Emlakci.WEBUI
             builder.Services.AddScoped<IStatisticService, StatisticManager>();
             builder.Services.AddScoped<IStatisticDal, EfCoreStatisticDal>();
 
+            builder.Services.AddScoped<ITodoListService, TodoListManager>();
+            builder.Services.AddScoped<ITodoListDal, EfCoreTodoListDal>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

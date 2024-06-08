@@ -20,6 +20,7 @@
                         <tr>
                             <th>#</th>
                             <th>Başlık</th>
+                            <th>Yayın Tarihi</th>
                             <th>Fiyat</th>
                             <th>Şehir</th>
                             <th>İlçe</th>
@@ -34,6 +35,7 @@
                             <tr>
                                 <td>@pr.Id</td>
                                 <td>@pr.Title</td>
+                                <td>@pr.ProductDetails.PublishDate.ToString("dd/MM/yyyy")</td>
                                 <td>@pr.Price</td>
                                 <td>@pr.City.Name</td>
                                 <td>@pr.District</td>
