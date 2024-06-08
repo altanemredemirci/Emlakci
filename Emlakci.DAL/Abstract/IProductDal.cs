@@ -1,4 +1,5 @@
-﻿using Emlakci.Entity;
+﻿using Emlakci.DAL.Concrete.EfCore;
+using Emlakci.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace Emlakci.DAL.Abstract
 {
     public interface IProductDal : IRepository<Product>
     {
+       List<Product> Last4Product();        
     }
 }

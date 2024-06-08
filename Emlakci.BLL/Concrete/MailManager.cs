@@ -39,6 +39,11 @@ namespace Emlakci.BLL.Concrete
             return _mailDal.GetById(id);
         }
 
+        public List<Mail> GetLast4Mail()
+        {
+            return _mailDal.GetLast4Mail();
+        }
+
         public void Update(Mail entity)
         {
             _mailDal.Update(entity);

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Emlakci.DAL.Abstract
 {
-    public interface IMailDal:IRepository<Mail>
+    public interface IMailDal : IRepository<Mail>
     {
-
+        List<Mail> GetLast4Mail();
     }
 }

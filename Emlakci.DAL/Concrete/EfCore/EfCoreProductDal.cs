@@ -12,18 +12,18 @@ namespace Emlakci.DAL.Concrete.EfCore
 {
     public class EfCoreProductDal : EfCoreGenericRepository<Product, DataContext>, IProductDal
     {
-        public override List<Product> GetAll(Expression<Func<Product,bool>> filter)
+        public override List<Product> GetAll(Expression<Func<Product, bool>> filter)
         {
-            using(var context = new DataContext())
+            using (var context = new DataContext())
             {
                 var products = context.Products
                     .Include(i => i.Category)
-                    .Include(i=> i.ProductDetails)
-                    .Include(i=> i.Agency)
-                    .Include(i=> i.City).AsQueryable();
+                    .Include(i => i.ProductDetails)
+                    .Include(i => i.Agency)
+                    .Include(i => i.City).AsQueryable();
 
                 return filter == null
-                    ? products.OrderByDescending(i=> i.ProductDetails.PublishDate). ToList()
+                    ? products.OrderByDescending(i => i.ProductDetails.PublishDate).ToList()
                     : products.Where(filter).OrderByDescending(i => i.ProductDetails.PublishDate).ToList();
             }
         }
@@ -35,17 +35,28 @@ namespace Emlakci.DAL.Concrete.EfCore
                 return context.Products
                     .Include(i => i.Category)
                     .Include(i => i.ProductDetails)
-                    .ThenInclude(i=> i.Images)
-                    .Include(i=> i.Agency)
-                    .Include(i => i.City).FirstOrDefault(i=> i.Id==id);
+                    .ThenInclude(i => i.Images)
+                    .Include(i => i.Agency)
+                    .Include(i => i.City).FirstOrDefault(i => i.Id == id);
             }
         }
 
-        private void UpViewCount(int id )
+        public List<Product> Last4Product()
         {
             using (var context = new DataContext())
             {
-               var product = context.ProductDetails.Find(id);
+                return context.Products
+                    .Include(i => i.Category)
+                    .Include(i => i.Agency)
+                    .Include(i => i.City).OrderByDescending(i=> i.Id).Take(4).ToList();
+            }
+        }
+
+        private void UpViewCount(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var product = context.ProductDetails.Find(id);
                 product.ViewCount += 1;
                 context.SaveChangesAsync();
             }

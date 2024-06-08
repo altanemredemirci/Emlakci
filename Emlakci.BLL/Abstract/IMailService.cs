@@ -9,6 +9,6 @@ namespace Emlakci.BLL.Abstract
 {
     public interface IMailService:IRepositoryService<Mail>
     {
-
+        List<Mail> GetLast4Mail();
     }
 }

@@ -10,5 +10,6 @@ namespace Emlakci.BLL.Abstract
 {
     public interface IProductService : IRepositoryService<Product>
     {
+        List<Product> Last4Product();
     }
 }

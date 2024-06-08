@@ -38,6 +38,12 @@ namespace Emlakci.BLL.Concrete
         {
             return _productDal.GetById(id);
         }
+
+        public List<Product> Last4Product()
+        {
+            return _productDal.Last4Product();
+        }
+
         public void Update(Product entity)
         {
             _productDal.Update(entity);

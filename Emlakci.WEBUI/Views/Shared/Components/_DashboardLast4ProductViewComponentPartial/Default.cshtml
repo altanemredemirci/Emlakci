@@ -1,0 +1,53 @@
+﻿@model List<ResultProductDTO>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">En Son Yayınlanan 5 İlan</h1>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <div class="input-group-append">
+                            <a href="/Product/Index" class="text-primary"><b>Tüm İlanlara Git</b></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 330px;">
+                <table class="table table-head-fixed text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Başlık</th>
+                            <th>Fiyat</th>
+                            <th>Şehir</th>
+                            <th>İlçe</th>
+                            <th>Adres</th>
+                            <th>Durum</th>
+                            <th>Kategori Adı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var pr in Model)
+                        {
+                            <tr>
+                                <td>@pr.Id</td>
+                                <td>@pr.Title</td>
+                                <td>@pr.Price</td>
+                                <td>@pr.City.Name</td>
+                                <td>@pr.District</td>
+                                <td>@pr.Address</td>
+                                <td>@pr.Type</td>
+                                <td>@pr.CategoryName</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
