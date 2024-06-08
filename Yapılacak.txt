@@ -1,3 +1,2 @@
 ProductDetail Create,Edit
 
-MailYanıtla

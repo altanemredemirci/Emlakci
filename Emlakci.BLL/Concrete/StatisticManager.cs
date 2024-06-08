@@ -79,7 +79,7 @@ namespace Emlakci.BLL.Concrete
 
         public int ProductCount()
         {
-            return ProductCount();
+            return _statisticDal.ProductCount();
         }
 
         public string TopAgencyByProductCount()

@@ -40,5 +40,6 @@ namespace Emlakci.BLL.DTOs.ProductDTO
 
         public int CityId { get; set; }
         public City City { get; set; }
+
     }
 }
