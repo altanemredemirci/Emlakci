@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Emlakci.WEBUI.Controllers
-{
+{    
     public class AdminController : Controller
     {
         public IActionResult Index()

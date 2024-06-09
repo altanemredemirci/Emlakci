@@ -2,6 +2,7 @@ using Emlakci.BLL.Abstract;
 using Emlakci.BLL.Concrete;
 using Emlakci.DAL.Abstract;
 using Emlakci.DAL.Concrete.EfCore;
+using Emlakci.DAL.Hubs;
 using Emlakci.WEBUI.Mapping;
 
 namespace Emlakci.WEBUI
@@ -16,6 +17,17 @@ namespace Emlakci.WEBUI
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+            builder.Services.AddCors(opt=>
+                opt.AddPolicy("CorsPolicy",builder=>
+                    builder.AllowCredentials()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .SetIsOriginAllowed((host)=>true))
+                );
+
+            builder.Services.AddSignalR();
+
             // ************ DEPENDENCY INJECTION *************
            
             builder.Services.AddScoped<ICategoryService, CategoryManager>();
@@ -63,6 +75,7 @@ namespace Emlakci.WEBUI
                 app.UseHsts();
             }
 
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -74,6 +87,7 @@ namespace Emlakci.WEBUI
                 name: "default",
                 pattern: "{controller=Admin}/{action=Index}/{id?}");
 
+            app.MapHub<SignalRHub>("/signalrhub");
             app.Run();
         }
     }
