@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Emlakci.BLL.Abstract;
+using Emlakci.BLL.DTOs.ProductDetailDTO;
 using Emlakci.BLL.DTOs.ProductDTO;
 using Emlakci.Entity;
 using Emlakci.WEBUI.Mapping;
 using Emlakci.WEBUI.Models;
+using Humanizer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Emlakci.WEBUI.Controllers
@@ -11,18 +13,20 @@ namespace Emlakci.WEBUI.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IProductDetailService _productDetailService;
         private readonly ICityService _cityService;
         private readonly ICategoryService _categoryService;
         private readonly IAgencyService _agencyService;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductService productService, ICityService cityService, ICategoryService categoryService, IAgencyService agencyService, IMapper mapper)
+        public ProductController(IProductService productService, ICityService cityService, ICategoryService categoryService, IAgencyService agencyService, IMapper mapper, IProductDetailService productDetailService)
         {
             _productService = productService;
             _cityService = cityService;
             _categoryService = categoryService;
             _agencyService = agencyService;
             _mapper = mapper;
+            _productDetailService = productDetailService;
         }
 
         public IActionResult Index()
@@ -38,32 +42,52 @@ namespace Emlakci.WEBUI.Controllers
             ViewBag.Categories = _categoryService.GetAll();
             ViewBag.Agencies = _agencyService.GetAll();
 
-            return View(new CreateProductDTO());
+            return View(new CreateProductDetailDTO());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateProductDTO model, IFormFile file)
+        public async Task<IActionResult> Create(CreateProductDetailDTO dto, IFormFile file, IFormFile[] files)
         {
-            ModelState.Remove("CoverImage");
+            ModelState.Remove("Product.CoverImage");
             ModelState.Remove("file");
-            ModelState.Remove("City");
-            ModelState.Remove("Category");
-            ModelState.Remove("Agency");
+            ModelState.Remove("Product.City");
+            ModelState.Remove("Product.Category");
+            ModelState.Remove("Product.Agency");
+            ModelState.Remove("Images");
+            ModelState.Remove("Product.ProductDetails");
             if (ModelState.IsValid)
             {
                 if (file == null)
                 {
-                    ModelState.AddModelError("", "Resim zorunludur.");
-
                     ViewBag.Cities = _cityService.GetAll();
                     ViewBag.Categories = _categoryService.GetAll();
                     ViewBag.Agencies = _agencyService.GetAll();
-                    return View(model);
+                    ModelState.AddModelError("", "Ana resim için dosya yüklenmedi.");
+                    return View(dto);
                 }
 
-                model.CoverImage = await ImageMethod.UploadImage(file);
-                _productService.Create(_mapper.Map<Product>(model));
+                if (files.Length == 0)
+                {
+                    ViewBag.Cities = _cityService.GetAll();
+                    ViewBag.Categories = _categoryService.GetAll();
+                    ViewBag.Agencies = _agencyService.GetAll();
+                    ModelState.AddModelError("", "İlan Detay Resimleri yüklenmedi.");
+                    return View(dto);
+                }
+
+                dto.Product.CoverImage = await ImageMethod.UploadImage(file);
+
+                foreach (var item in files)
+                {
+                    Entity.Image image = new Entity.Image();
+                    image.Url = await ImageMethod.UploadImage(item);
+                    dto.Images.Add(image);
+                }
+                dto.Product.Status = true;
+                dto.PublishDate = DateTime.Now;
+                //_productService.Create(_mapper.Map<Product>(dto.Product));
+                _productDetailService.Create(_mapper.Map<ProductDetails>(dto));
 
                 return RedirectToAction("Index");
             }
@@ -72,7 +96,7 @@ namespace Emlakci.WEBUI.Controllers
             ViewBag.Cities = _cityService.GetAll();
             ViewBag.Categories = _categoryService.GetAll();
             ViewBag.Agencies = _agencyService.GetAll();
-            return View(model);
+            return View(dto);
         }
 
 

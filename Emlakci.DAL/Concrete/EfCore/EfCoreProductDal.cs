@@ -31,7 +31,7 @@ namespace Emlakci.DAL.Concrete.EfCore
         {
             using (var context = new DataContext())
             {
-                UpViewCount(id);
+                //UpViewCount(id);
                 return context.Products
                     .Include(i => i.Category)
                     .Include(i => i.ProductDetails)
@@ -53,15 +53,15 @@ namespace Emlakci.DAL.Concrete.EfCore
             }
         }
 
-        private void UpViewCount(int id)
-        {
-            using (var context = new DataContext())
-            {
-                var product = context.ProductDetails.Find(id);
-                product.ViewCount += 1;
-                context.SaveChangesAsync();
-            }
-        }
+        //private void UpViewCount(int id)
+        //{
+        //    using (var context = new DataContext())
+        //    {
+        //        var product = context.ProductDetails.Find(id);
+        //        product.ViewCount += 1;
+        //        context.SaveChangesAsync();
+        //    }
+        //}
 
     }
 }

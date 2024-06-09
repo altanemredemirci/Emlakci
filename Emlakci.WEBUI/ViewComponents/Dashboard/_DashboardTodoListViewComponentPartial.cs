@@ -17,9 +17,11 @@ namespace Emlakci.WEBUI.ViewComponents.Dashboard
 
         public IViewComponentResult Invoke()
         {
-            var model = _todoListService.GetAll();
+            //var model = _todoListService.GetAll();
 
-            return View(_mapper.Map<List<ResultTodoListDTO>>(model));
+            //return View(_mapper.Map<List<ResultTodoListDTO>>(model));
+
+            return View();
         }
     }
 }

@@ -2,7 +2,7 @@ using Emlakci.BLL.Abstract;
 using Emlakci.BLL.Concrete;
 using Emlakci.DAL.Abstract;
 using Emlakci.DAL.Concrete.EfCore;
-using Emlakci.DAL.Hubs;
+using Emlakci.WEBUI.Hubs;
 using Emlakci.WEBUI.Mapping;
 
 namespace Emlakci.WEBUI
@@ -35,6 +35,10 @@ namespace Emlakci.WEBUI
 
             builder.Services.AddScoped<IProductService, ProductManager>();
             builder.Services.AddScoped<IProductDal, EfCoreProductDal>();
+
+            builder.Services.AddScoped<IProductDetailService, ProductDetailManager>();
+            builder.Services.AddScoped<IProductDetailsDal, EfCoreProductDetailsDal>();
+
 
             builder.Services.AddScoped<IEmploymentService, EmploymentManager>();
             builder.Services.AddScoped<IEmploymentDal, EfCoreEmploymentDal>();
