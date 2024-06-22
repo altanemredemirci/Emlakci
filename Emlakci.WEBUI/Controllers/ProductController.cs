@@ -5,7 +5,6 @@ using Emlakci.BLL.DTOs.ProductDTO;
 using Emlakci.Entity;
 using Emlakci.WEBUI.Mapping;
 using Emlakci.WEBUI.Models;
-using Humanizer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Emlakci.WEBUI.Controllers
@@ -114,14 +113,20 @@ namespace Emlakci.WEBUI.Controllers
                 return View("Error", error);
             }
 
-            var product = _productService.GetById(id);
+            var productDetail = _productDetailService.GetById(id);
 
-            if (product == null)
+            if (productDetail == null)
             {
-
+                ErrorViewModel error = new ErrorViewModel()
+                {                   
+                    Title = "İlan Bulunamadı",
+                    Message = "Lütfen varolan bir ilanı seçiniz.",
+                    ReturnUrl = "/Product/Index"
+                };
+                return View("Error", error);
             }
 
-            var model = _mapper.Map<UpdateProductDTO>(product);
+            var model = _mapper.Map<UpdateProductDetailDTO>(productDetail);
 
             ViewBag.Cities = _cityService.GetAll();
             ViewBag.Categories = _categoryService.GetAll();
@@ -132,25 +137,66 @@ namespace Emlakci.WEBUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(UpdateProductDTO model, IFormFile file)
+        public async Task<IActionResult> Edit(UpdateProductDetailDTO model, IFormFile file, IFormFile[] files)
         {
-            ModelState.Remove("CoverImage");
-            ModelState.Remove("City");
+            ModelState.Remove("Product.CoverImage");
+            ModelState.Remove("Product.City");
             ModelState.Remove("file");
-            ModelState.Remove("Category");
-            ModelState.Remove("Agency");
+            ModelState.Remove("Product.Category");
+            ModelState.Remove("Product.Agency");
+            ModelState.Remove("Product.ProductDetails");
             if (ModelState.IsValid)
             {
-                var product = _productService.GetById(model.Id);
+                var productDetail = _productDetailService.GetById(model.ProductId);
+
+                if (productDetail == null)
+                {
+                    ErrorViewModel error = new ErrorViewModel()
+                    {
+                        Title = "İlan Bulunamadı",
+                        Message = "Lütfen varolan bir ilanı seçiniz.",
+                        ReturnUrl = "/Product/Index"
+                    };
+                    return View("Error", error);
+                }
 
                 if (file != null)
                 {
-                    ImageMethod.DeleteImage(product.CoverImage);
+                    ImageMethod.DeleteImage(productDetail.Product.CoverImage);
                                         
-                    model.CoverImage= await ImageMethod.UploadImage(file);
+                    model.Product.CoverImage= await ImageMethod.UploadImage(file);
+                }
+                else
+                {
+                    model.Product.CoverImage = productDetail.Product.CoverImage;
                 }
 
-               _productService.Update(_mapper.Map<Product>(model));
+                if (files != null)
+                {
+                    productDetail.Images.ForEach(i => ImageMethod.DeleteImage(i.Url));
+
+                    foreach (var item in files)
+                    {
+                        Image image = new Image();
+                        image.Url = await ImageMethod.UploadImage(item);
+                        model.Images.Add(image);
+                    }
+                }
+
+                else
+                {
+                    //foreach (var item in productDetail.Images)
+                    //{
+                    //    Image image = new Image();
+                    //    image.Url = item.Url;
+                    //    image.ProductDetailsId = item.ProductDetailsId;
+                    //    model.Images.Add(image);
+                    //}
+
+                    model.Images = productDetail.Images;
+                }
+                model.Product.Status = true;
+               _productDetailService.Update(_mapper.Map<ProductDetails>(model));
 
                 return RedirectToAction("Index");
             }

@@ -24,6 +24,7 @@ namespace Emlakci.WEBUI.Mapping
             CreateMap<Product, UpdateProductDTO>().ReverseMap();
 
             CreateMap<ProductDetails, CreateProductDetailDTO>().ReverseMap();
+            CreateMap<ProductDetails, UpdateProductDetailDTO>().ReverseMap();
 
             CreateMap<Agency, ResultAgencyDTO>().ReverseMap();
             CreateMap<Agency, CreateAgencyDTO>().ReverseMap();
