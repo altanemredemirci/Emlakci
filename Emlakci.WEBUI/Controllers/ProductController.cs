@@ -236,6 +236,7 @@ namespace Emlakci.WEBUI.Controllers
             }
 
             _productService.Delete(product);
+            product.ProductDetails.Images.ForEach(i => ImageMethod.DeleteImage(i.Url));
             ImageMethod.DeleteImage(product.CoverImage);
 
             return RedirectToAction("Index");
