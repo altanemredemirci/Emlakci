@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlakci.DAL", "Emlakci.DAL\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlakci.BLL", "Emlakci.BLL\Emlakci.BLL.csproj", "{607F58BE-C639-46DB-B83D-632DC343ABC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emlakci.WEBAPI", "Emlakci.WEBAPI\Emlakci.WEBAPI.csproj", "{9F5C117B-07AF-4792-BA1B-CAF0BDD19823}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{607F58BE-C639-46DB-B83D-632DC343ABC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{607F58BE-C639-46DB-B83D-632DC343ABC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{607F58BE-C639-46DB-B83D-632DC343ABC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F5C117B-07AF-4792-BA1B-CAF0BDD19823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F5C117B-07AF-4792-BA1B-CAF0BDD19823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F5C117B-07AF-4792-BA1B-CAF0BDD19823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F5C117B-07AF-4792-BA1B-CAF0BDD19823}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
